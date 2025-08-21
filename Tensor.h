@@ -10,7 +10,6 @@ typedef int TensorDimension;
 struct Rank {
     int p;
     int q;
-
     int total() const { return p + q; }
 };
 

@@ -150,6 +150,7 @@ void Tensor::reset_index(char idxname)
     }
 }
 
+
 void Tensor::inc_index(char idxname)
 {
     for (int i = 0;i < rank.total();i++) {

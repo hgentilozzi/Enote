@@ -8,7 +8,7 @@
 /// <param name="id"></param>
 /// <param name="name"></param>
 /// <param name="parent"></param>
-TensorIndex::TensorIndex() : name('\0'), value(-1) {}
+TensorIndex::TensorIndex() : name('\0'), value(-1), dim(1) {}
 
 /// <summary>
 /// 

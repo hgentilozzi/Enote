@@ -2,9 +2,6 @@
 //
 
 #include <iostream>
-#include <vector>
-#include <sstream>
-#include <exception>
 #include "Tensor.h"
 #include "UCodeLib.h"
 #include "EnoteException.h"
@@ -12,10 +9,6 @@
 int main()
 {
     unicode_init();
-
-   /* char c = 'k';
-    std::wcout << "t" << char_to_superscript(c) << char_to_subscript(c)  << std::endl;
-    std::cin >> c;*/
 
     try {
         //Tensor v("V", 2, { 1,0 }, "i");
