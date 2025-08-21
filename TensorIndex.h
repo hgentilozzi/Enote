@@ -1,11 +1,22 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "Space.h"
 
-struct TensorIndex {
-    TensorIndex();
+class TensorIndex;
 
-    char name;
+typedef std::vector<TensorIndex> TensorIndexVec;
+
+class TensorIndex {
+public:
+
+    TensorIndex(char indexName);
+    TensorIndex(char columnName, char indexName);
+
+    void init(char columnName, char indexName);
+
+    char columnName;
+    char indexName;
     int  value;
     TensorDimension dim;
     bool zeroBased;
@@ -22,4 +33,7 @@ struct TensorIndex {
 
     friend std::ostream& operator << (std::ostream& os, const TensorIndex& obj);
 
+private:
+    int one_based_value() const;
 };
+

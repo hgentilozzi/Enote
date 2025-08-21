@@ -12,16 +12,18 @@ int main()
     unicode_init();
 
     try {
-        SpacePtr space = Space::make_space("HSpace",2, true);
+        SpacePtr space = Space::make_space("HSpace",3, false);
+        
+        TensorPtr v = Tensor::make_vector('v', 'i');
+        TensorPtr b = Tensor::make_vector('b', 'j');
+        TensorPtr w = Tensor::make_covector('w', 'i');
+        TensorPtr c = Tensor::make_covector('c', 'j');
+        TensorPtr t = Tensor::tensor_product('t', { v,b,w,c});
+        Tensor::print_contraction(*t);
 
-        Tensor t("T",{ 1,1 }, "ii");
-
-        Tensor::print_contraction(t,t);
-
-    //    //std::cout << v;
     }
     catch (EnoteException ex) {
-        std::cout << "Exception Caught: " << ex.what() << std::endl;
+        std::wcout << "Exception Caught: " << ex.what() << std::endl;
     }
     
 }

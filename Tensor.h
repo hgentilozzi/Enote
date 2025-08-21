@@ -5,31 +5,43 @@
 #include "TensorIndex.h"
 #include "Space.h"
 
-
-
 struct Rank {
     int p;
     int q;
     int total() const { return p + q; }
 };
 
+struct TensorConfig {
+    //TensorConfig(char name, Rank rank, TensorIndexVec tiv) : name(name), rank(rank), tiv(tiv) {}
+    char name;
+    Rank rank;
+    TensorIndexVec tiv;
+};
+
+class Tensor;
+
+typedef std::shared_ptr<Tensor> TensorPtr;
+typedef std::vector<TensorPtr> TensorVec;
+
 class Tensor {
 public:
-    Tensor(const char* name, Rank rank, const char* idxnames);
-
     static void print_contraction(Tensor& t);
-    static void print_contraction(Tensor& v, Tensor& w);
+    static std::shared_ptr<Tensor> make_tensor(TensorConfig tc);
+    static std::shared_ptr<Tensor> make_vector(char name,char idxname);
+    static std::shared_ptr<Tensor> make_covector(char name,char idxname);
+    static std::shared_ptr<Tensor> tensor_product(char name, TensorVec tv);
 
+    Tensor(TensorConfig tc);
 
-    std::string get_name() const { return name; }
+    char get_name() const { return tensorName; }
     Rank& get_rank() { return rank; }
+    TensorIndexVec& getIndices() { return indices; }
     
-
     friend std::ostream& operator << (std::ostream& ss, const Tensor& obj);
 
 private:
-    std::string name;
-    std::shared_ptr<TensorIndex[]> indices;
+    char tensorName;
+    TensorIndexVec indices;
     Rank rank;
     TensorDimension dim;
 
@@ -43,7 +55,10 @@ private:
 
     std::vector<TensorIndex*> get_indices_by_name(char idxname);
 
-    static void bind_upper_to_Lower(Tensor& v, Tensor& w, std::vector<char>& bounded);
-    static void inc_index_and_print(Tensor& v, Tensor& w, std::vector<char> bounded, size_t cidx);
+    static void bind_upper_to_Lower(Tensor& t, std::vector<char>& bounded);
+    static void inc_index_and_print(Tensor& t, std::vector<char> bounded, size_t cidx);
 
 };
+
+
+

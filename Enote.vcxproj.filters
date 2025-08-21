@@ -24,9 +24,6 @@
     <ClCompile Include="TensorIndex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EnoteException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UcodeLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
