@@ -93,10 +93,16 @@ void Tensor::inc_index_and_print(Tensor& v, Tensor& w, std::vector<char> bounded
     bool notsame = !v.same_tensor(w);
     char iname = bounded[cidx];
 
+
+    if (cidx < bounded.size() - 1) {
+        inc_index_and_print(v, w, bounded, cidx + 1);
+    }
+
     for (int dim_i = 1; dim_i < v.dim; dim_i++) {
 
-        if (cidx < bounded.size() - 1)
-            inc_index_and_print(v, w, bounded, cidx + 1);
+        //if (cidx < bounded.size() - 1) {
+        //    inc_index_and_print(v, w, bounded, cidx + 1);
+        //}
 
         v.inc_index(iname);
         if (notsame)
@@ -106,19 +112,19 @@ void Tensor::inc_index_and_print(Tensor& v, Tensor& w, std::vector<char> bounded
         if (notsame)
             w.print_indices();
         
-        if (!v.indices_at_eof() || (notsame && !w.indices_at_eof()))
+        if (!v.indices_at_eof())
             std::wcout << " + ";
 
-        //if (cidx == 0)
-        //    inc_index_and_print(v, w, bounded, cidx + 1);
+        if (cidx < bounded.size() - 1) {
+            inc_index_and_print(v, w, bounded, cidx + 1);
+        }
+
     }
 
     v.reset_index(iname);
     if (notsame)
         w.reset_index(iname);
 
-    //if (cidx>0)
-    //    std::wcout << " + ";
 }
 
 /// <summary>

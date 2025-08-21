@@ -20,13 +20,13 @@ int main()
     try {
         //Tensor v("V", 2, { 1,0 }, "i");
         //Tensor w("W", 2, { 0,1 }, "i");
-        Tensor v("V", 3, { 2,0 }, "ij");
-        Tensor w("W", 3, { 0,2 }, "ij");
-        //Tensor t("T", 3, { 1,1 }, "ii");
+        //Tensor v("G", 3, { 2,0 }, "ij");
+        //Tensor w("T", 3, { 1,3 }, "kijl");
+        Tensor t("T", 3, { 1,3 }, "ijik");
 
 
-        Tensor::print_contraction(v, w);
-        //Tensor::print_contraction(t,t);
+        //Tensor::print_contraction(v, w);
+        Tensor::print_contraction(t,t);
 
     //    //std::cout << v;
     }
