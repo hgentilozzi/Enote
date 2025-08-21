@@ -133,12 +133,14 @@
   <ItemGroup>
     <ClCompile Include="Enote.cpp" />
     <ClCompile Include="EnoteException.cpp" />
+    <ClCompile Include="Space.cpp" />
     <ClCompile Include="Tensor.cpp" />
     <ClCompile Include="TensorIndex.cpp" />
     <ClCompile Include="UcodeLib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnoteException.h" />
+    <ClInclude Include="Space.h" />
     <ClInclude Include="Tensor.h" />
     <ClInclude Include="TensorIndex.h" />
     <ClInclude Include="UcodeLib.h" />

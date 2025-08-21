@@ -30,6 +30,9 @@
     <ClCompile Include="UcodeLib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Space.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tensor.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UcodeLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Space.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

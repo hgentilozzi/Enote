@@ -8,7 +8,11 @@
 /// <param name="id"></param>
 /// <param name="name"></param>
 /// <param name="parent"></param>
-TensorIndex::TensorIndex() : name('\0'), value(-1), dim(1) {}
+TensorIndex::TensorIndex() : name('\0'), value(-1) {
+    SpacePtr s = Space::get_space();
+    dim = s->get_dim();
+    zeroBased = s->get_zero_based();
+}
 
 /// <summary>
 /// 
@@ -19,11 +23,13 @@ void TensorIndex::reset_bounded() {
 
 void TensorIndex::reset_value() {
     if (is_bounded())
-        value = 1;
+        value = (zeroBased)? 0 : 1;
 }
 
 bool TensorIndex::eof() const {
-    return (!is_bounded() || value==dim);
+    int oval = (zeroBased) ? value + 1 : value;
+
+    return (!is_bounded() || oval==dim);
 }
 
 
@@ -43,7 +49,7 @@ char TensorIndex::get_char_value() const {
 /// </summary>
 void TensorIndex::bind()
 {
-    value = 1;
+    value = (zeroBased) ? 0 : 1;
 }
 
 /// <summary>
@@ -63,7 +69,9 @@ void TensorIndex::increment_value()
     if (is_bounded())
         value++;
 
-    if (value>dim) {
+    int oval = (zeroBased) ? value + 1 : value;
+
+    if (oval>dim) {
         std::stringstream ss;
         ss << "TensorIndex::increment_value: Value exceeds dimenstion. val=" << value << " dim=" << dim;
  

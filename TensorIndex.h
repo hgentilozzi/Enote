@@ -1,12 +1,14 @@
 #pragma once
 #include <iostream>
+#include "Space.h"
 
 struct TensorIndex {
     TensorIndex();
 
     char name;
     int  value;
-    int  dim;
+    TensorDimension dim;
+    bool zeroBased;
 
     void reset_bounded();
     void reset_value();

@@ -3,9 +3,9 @@
 #include <iostream>
 #include <vector>
 #include "TensorIndex.h"
+#include "Space.h"
 
 
-typedef int TensorDimension;
 
 struct Rank {
     int p;
@@ -15,7 +15,7 @@ struct Rank {
 
 class Tensor {
 public:
-    Tensor(const char* name, TensorDimension dim, Rank rank, const char* idxnames);
+    Tensor(const char* name, Rank rank, const char* idxnames);
 
     static void print_contraction(Tensor& t);
     static void print_contraction(Tensor& v, Tensor& w);
@@ -30,8 +30,9 @@ public:
 private:
     std::string name;
     std::shared_ptr<TensorIndex[]> indices;
-    TensorDimension dim;
     Rank rank;
+    TensorDimension dim;
+
 
     void reset_bounded();
     void reset_index(char idxname);

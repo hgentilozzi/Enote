@@ -5,8 +5,8 @@
 #include "EnoteException.h"
 #include <sstream>
 
-Tensor::Tensor(const char* name, TensorDimension dim, Rank rank, const char* idxnames)
-    : name(name), dim(dim), rank(rank) {
+Tensor::Tensor(const char* name, Rank rank, const char* idxnames)
+    : name(name), rank(rank) {
     int numidxs = static_cast<int>(strlen(idxnames));
     
     // index names must name all indices
@@ -18,11 +18,12 @@ Tensor::Tensor(const char* name, TensorDimension dim, Rank rank, const char* idx
         throw EnoteException(ss.str());
     }
 
+    dim = Space::get_space()->get_dim();
+
     // create the indices
     indices = std::make_shared<TensorIndex[]>(numidxs);
     for (int i = 0;i < numidxs;i++) {
         indices[i].name = idxnames[i];
-        indices[i].dim = dim;
     }
 
 }
@@ -269,7 +270,7 @@ std::ostream& operator << (std::ostream& ss, const Tensor& t) {
     int rpq = rp + rq;
 
     ss << "Tensor[name=" << t.get_name() << ",rank(" << rp << "," << rq << ")";
-    ss << ",dim=" << t.dim;
+    ss << ",dim=" << Space::get_space()->get_dim();
 
  
     if (rp > 0) {
